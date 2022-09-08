@@ -43,10 +43,12 @@ In order to run this API, you will need to have rails 7 and ruby 3.0.4 installed
 For testing the APIs I would have love to write some unit tests, but with the timeline of the project and the priority I placed on documentation, I ran out of time. However, the postman collection contains the ability to manually test each route for intended results. This is by no means my preference, but I didn't want to spend an overly large amount of time and break the spirit of the project by being dishonest about how much time I spent on it. If I had more time I would prefer to use VCR to create automatically updating caches of each controller methods return value (to reduce the time the test suite would take to run) and test against them. I've had a lot of positive experience using this method rather than the default integration/controller tests that Rails come with.
 
 A good method for running through the postman collection is as follows:
-	1. Create at minimum two users
+```
+  1. Create at minimum two users
 	2. Create a conversation between user_ids `1` and `2`
 	3. Post a message in that conversation
 	4. Check all `GET` routes for expected results
+```
 
 ### Postman
 For your convenience I have provided a postman collection of a few basic requests necessary to create users, conversations, and messages within those conversations. You can find it in the root folder at `Messages.postman_collection.json`.
