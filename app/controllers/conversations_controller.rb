@@ -14,12 +14,21 @@ class ConversationsController < ApplicationController
   end
 
 
-  def new
-    @conversation = Conversation.new
-  end
-
   def show
     @conversation
+  end
+
+  def all
+    @messages = []
+    conversations_collection = Conversation.all
+    for conversation in conversations_collection do
+      @messages.concat(conversation.messages.where('created_at > ?', 30))
+
+    end
+    @messages.sort_by{|hash| hash[:created_at]}
+    render json: {
+             data: @messages
+           }
   end
 
   def create

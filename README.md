@@ -1,11 +1,4 @@
 # README
-## TODO
-	1. Limit messages from a conversation to the most recent 100 sorted by newest, and with a "created_at" within 30 days
-	2. Create a route to get all messages from all conversations with same rules applied
-	3. Document routes (swagger and readme)
-	4. write tests for all routes and include how to run tests in readme (i want to use vcr to record the results and test off that)
-	5. create dockerfile and documentation on how to run
-	6. create postman collection of all endpoints
 
 ## Installation
   * Install git to your machine
@@ -17,31 +10,52 @@
 
 
 ## Running the API
-In order to run this API, you will need to either have docker installed on your system to run the API as a container (preferred) or install compatible versions of ruby (3.0.4) and rails (7.0.3.1) in order to run the API from your local shell. This is a matter of user preference however the Docker solution will be
-
-### Docker
-  * Install docker to your system
-	* https://docs.docker.com/get-docker/
-  * Install docker-compose to your system
-	* https://docs.docker.com/compose/install/
-  * Run `./run.sh` inside the project directory
-	* if you get the following error: `./run.sh: Permission denied`, run
-	* Docker will find the the `Dockerfile` in the project root and build based on the instructions within
-  * Send all requests to the now exposed `localhost:8080` TODO: PUTACTUALPORTHERE
+In order to run this API, you will need to have rails 7 and ruby 3.0.4 installed. I tried to create a Docker solution for running the project but ran into some very strange issue building the gem dependecies, which I believe were based on the M1 Chip architecture. I decided against diving too deep into this due to the time constraint.
 
 ### Rails
-  * Ensure you have Ruby Version `3.0.4` and Rails `7.0.3.1` installed (or compatible versions)
-	* For installation, see the following documentation: https://www.ruby-lang.org/en/documentation/installation/
-  * Inside the project directory, run the following commands in order
+  * Ensure you have Ruby Version `3.0.4` and Rails `7.0.3.1` installed (or compatible versions).
+	* For installation, see the following documentation: https://www.ruby-lang.org/en/documentation/installation/ .
+	* I recommend using [rbenv](https://github.com/rbenv/rbenv) for managing multiple ruby versions, should you have a different version currently installed.
+  * Inside the project directory, run the following commands in order.
 	```
+	bundle install
 	rails db:setup
 	rails db:migrate
 	rails server
 	```
+  * In your shell you should see the following printed:
+	```
+	=> Booting Puma
+	=> Rails 7.0.3.1 application starting in development
+	=> Run `bin/rails server --help` for more startup options
+	Puma starting in single mode...
+	* Puma version: 5.6.5 (ruby 3.0.4-p208) ("Birdie's Version")
+	*  Min threads: 5
+	*  Max threads: 5
+	*  Environment: development
+	*          PID: 65343
+	* Listening on http://127.0.0.1:3000
+	* Listening on http://[::1]:3000
+	Use Ctrl-C to stop
+    ```
 
+## Testing
+For testing the APIs I would have love to write some unit tests, but with the timeline of the project and the priority I placed on documentation, I ran out of time. However, the postman collection contains the ability to manually test each route for intended results. This is by no means my preference, but I didn't want to spend an overly large amount of time and break the spirit of the project by being dishonest about how much time I spent on it. If I had more time I would prefer to use VCR to create automatically updating caches of each controller methods return value (to reduce the time the test suite would take to run) and test against them. I've had a lot of positive experience using this method rather than the default integration/controller tests that Rails come with.
+
+A good method for running through the postman collection is as follows:
+	1. Create at minimum two users
+	2. Create a conversation between user_ids `1` and `2`
+	3. Post a message in that conversation
+	4. Check all `GET` routes for expected results
+
+### Postman
+For your convenience I have provided a postman collection of a few basic requests necessary to create users, conversations, and messages within those conversations. You can find it in the root folder at `Messages.postman_collection.json`.
+Reference:
+  * https://www.postman.com/downloads/
+  * https://learning.postman.com/docs/getting-started/importing-and-exporting-data/
 
 ## Routing
-I have listed the available routes below. For information on what each route expects, please see the swagger page for this api. (TODO: CREATE SWAGGER)
+I have listed the available routes below. For information on what each route expects, please see the `available_routes.html` page.
 
 ### User Routes
 ```
@@ -60,6 +74,8 @@ GET CONVERSATION INFO:
 	GET /conversations/{conversation_id}
 GET CONVERSATION MESSAGES:
 	GET /conversations/{conversation_id}/messages
+GET ALL CONVERSATION MESSAGES:
+	GET /all
 CREATE CONVERSATION:
 	POST /conversations
 CREATE MESSAGE IN CONVERSATION:

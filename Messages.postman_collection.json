@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "376d0df1-6a29-4769-80f1-6af04c004b14",
+		"name": "Messages",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21750187"
+	},
+	"item": [
+		{
+			"name": "GET CONVERSATIONS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/conversations",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"conversations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE CONVERSATION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sender_id\": 1,\n    \"recipient_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/conversations",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"conversations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE USER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"jim\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET USER",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET MESSAGES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/conversations/1/messages",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"conversations",
+						"1",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL MESSAGES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/conversations/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"conversations",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST MESSAGE IN CONVERSATION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"hello to you again\",\n    \"user_id\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/conversations/1/messages/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"conversations",
+						"1",
+						"messages",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

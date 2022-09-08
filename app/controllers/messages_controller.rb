@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
 
   # GET /messages or /messages.json
   def index
-    @messages = @conversation.messages
+    # only return messages within the past 30 days by most recent
+    @messages = @conversation.messages.where('created_at > ?', 30.days.ago).limit(100).order!('created_at DESC')
     render json: {
              data: @messages
            }
