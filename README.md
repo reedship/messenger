@@ -21,8 +21,11 @@ In order to run this API, you will need to either have docker installed on your 
 
 ### Docker
   * Install docker to your system
-	* You can find the installation instructions at https://docs.docker.com/get-docker/
-  * Run `docker run .` inside the project directory
+	* https://docs.docker.com/get-docker/
+  * Install docker-compose to your system
+	* https://docs.docker.com/compose/install/
+  * Run `./run.sh` inside the project directory
+	* if you get the following error: `./run.sh: Permission denied`, run
 	* Docker will find the the `Dockerfile` in the project root and build based on the instructions within
   * Send all requests to the now exposed `localhost:8080` TODO: PUTACTUALPORTHERE
 
